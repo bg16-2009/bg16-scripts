@@ -1,8 +1,9 @@
-#/bin/bash
+#!/usr/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
+if [[ $EUID > 0 ]]
+then
+    echo "Please run as root"
+    exit
 fi
 
 # Make 1GB of swap
