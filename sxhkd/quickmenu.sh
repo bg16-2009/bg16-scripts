@@ -8,14 +8,16 @@ commands["Cht.sh"]="chtsh"
 
 selected=${commands[$(printf '%s\n' "${!commands[@]}" | rofi -dmenu -i -p "")]}
 
-case "$selected" in 
-    "vol")
-        echo "volume" | rofi -dmenu 
-        ;;
-    "brighteness")
-	    brightnessctl s $(echo "" | rofi -dmenu -theme-str 'listview {enabled: false;}' -i -p "Enter brightness percentage(current is $(brightnessctl -m  | awk -F, '{print $4}'))")%
-        ;;
-    "chtsh")
-        echo "cht" | rofi -dmenu
-        ;;
+case "$selected" in
+"vol")
+	echo "volume" | rofi -dmenu
+	;;
+"brighteness")
+	current_brightness=$(brightnessctl -m | awk -F, '{print $4}')
+	new_brightness=$(echo "" | rofi -dmenu -theme-str 'listview {enabled: false;}' -i -p "Enter brightness percentage(current is $current_brightness)")
+	brightnessctl s "$new_brightness%"
+	;;
+"chtsh")
+	echo "cht" | rofi -dmenu
+	;;
 esac
