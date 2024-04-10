@@ -20,6 +20,6 @@ case "$selected" in
 	brightnessctl s "$new_brightness%"
 	;;
 "chtsh")
-	echo "cht" | rofi -dmenu
+	# TODO
 	;;
 esac
