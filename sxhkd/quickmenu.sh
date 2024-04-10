@@ -10,7 +10,9 @@ selected=${commands[$(printf '%s\n' "${!commands[@]}" | rofi -dmenu -i -p "")]}
 
 case "$selected" in
 "vol")
-	echo "volume" | rofi -dmenu
+	current_volume=$(pactl get-sink-volume @DEFAULT_SINK@ | cut -d "/" -f2 | head -n1 | tr -d " ")
+	new_volume=$(echo "" | rofi -dmenu -theme-str 'listview {enabled: false;}' -i -p "Enter volume percentage(current is $current_volume)")
+	pactl set-sink-volume @DEFAULT_SINK@ "$new_volume%"
 	;;
 "brighteness")
 	current_brightness=$(brightnessctl -m | awk -F, '{print $4}')
