@@ -5,17 +5,17 @@
 # After exiting nvim, the file contents get put in the tmux clipboard and the file gets deleted.
 
 print_help() {
-	echo "Usage: ./quickedit.sh [popup|window]"
-	echo "Opens fzf to select a filetype, and opens /tmp/edit{filetype} in nvim inside of a tmux [popup|window]."
+    echo "Usage: ./quickedit.sh [popup|window]"
+    echo "Opens fzf to select a filetype, and opens /tmp/edit{filetype} in nvim inside of a tmux [popup|window]."
     echo "After exiting nvim, the file contents get put in the tmux clipboard and the file gets deleted."
 }
 
 if [ "$1" == "popup" ]; then
-	type_of_window="popup -E"
+    type_of_window="popup -E"
 elif [ "$1" == "window" ]; then
-	type_of_window="new-window"
+    type_of_window="new-window"
 else
-	print_help
+    print_help
     exit
 fi
 
