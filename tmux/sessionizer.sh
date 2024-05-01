@@ -10,6 +10,7 @@
 # {session_name} {session_path}
 # ...
 # {session_name} {session_path}
+# ```
 #
 # If the session exists, it will be opened. 
 # If the session doesn't exist, a new one will be created with the name {session name} in the {session path} directory
