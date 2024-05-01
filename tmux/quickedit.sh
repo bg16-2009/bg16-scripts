@@ -30,9 +30,12 @@ selected_filetype=${filetypes[$(printf '%s\n' "${!filetypes[@]}" | fzf-tmux)]}
 
 file="/tmp/edit$selected_filetype"
 
-touch "$file"
-
 tmux $type_of_window nvim $file
+
+# wait for file to be created
+while [ ! -f "$file" ]; do
+    sleep 1
+done
 
 cat $file | tmux load-buffer -
 rm $file
