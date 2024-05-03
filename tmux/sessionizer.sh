@@ -32,6 +32,11 @@ done
 IFS=$OLD_IFS
 
 session_name=$(printf '%s\n' "${!sessions[@]}" | fzf-tmux)
+
+if [ "$session_name" == "" ]; then
+    exit
+fi
+
 session_path=${sessions["$session_name"]}
 
 if ! tmux has-session -t=$session_name 2>/dev/null; then
